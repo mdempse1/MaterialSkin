@@ -110,7 +110,7 @@
             set
             {
                 base.Text = value;
-                _textSize = CreateGraphics().MeasureString(value.ToUpper(), SkinManager.ROBOTO_MEDIUM_10);
+                _textSize = CreateGraphics().MeasureString(value.ToUpper(), SkinManager.BUTTON_FONT);
                 if (AutoSize)
                 {
                     Size = GetPreferredSize();
@@ -193,7 +193,7 @@
 
             g.DrawString(
                 Text.ToUpper(),
-                SkinManager.ROBOTO_MEDIUM_10,
+                SkinManager.BUTTON_FONT,
                 Enabled ? (Primary ? SkinManager.ColorScheme.PrimaryBrush : SkinManager.GetPrimaryTextBrush()) : SkinManager.GetFlatButtonDisabledTextBrush(),
                 textRect,
                 new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
@@ -239,6 +239,8 @@
             {
                 return;
             }
+
+            Font = SkinManager.BUTTON_FONT;
 
             MouseState = MouseState.OUT;
             MouseEnter += (sender, args) =>

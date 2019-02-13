@@ -34,7 +34,7 @@
             base.OnCreateControl();
 
             ForeColor = SkinManager.GetPrimaryTextColor();
-            Font = SkinManager.ROBOTO_REGULAR_11;
+            Font = SkinManager.TEXT_FONT;
 
             BackColorChanged += (sender, args) => ForeColor = SkinManager.GetPrimaryTextColor();
         }

@@ -114,6 +114,21 @@
     public enum Primary
     {
         /// <summary>
+        /// Defines the Claytex Light Blue
+        /// </summary>
+        ClaytexLight = 0x969dde,
+
+        /// <summary>
+        /// Defines the Claytex Primary Blue
+        /// </summary>
+        ClaytexPrimary = 0x666fac,
+
+        /// <summary>
+        /// Defines the Claytex Dark Blue
+        /// </summary>
+        ClaytexDark = 0x37447c,
+        
+        /// <summary>
         /// Defines the Red50
         /// </summary>
         Red50 = 0xFFEBEE,
@@ -1069,6 +1084,21 @@
     /// </summary>
     public enum Accent
     {
+        /// <summary>
+        /// Defines the Claytex Secondary Light Purple
+        /// </summary>
+        ClaytexLight = 0xb093dc,
+
+        /// <summary>
+        /// Defines the Claytex Secondary Purple
+        /// </summary>
+        ClaytexSecondary = 0x7f65aa,
+
+        /// <summary>
+        /// Defines the Claytex Secondary Dark Purple
+        /// </summary>
+        ClaytexDark = 0x513a7b,
+
         /// <summary>
         /// Defines the Red100
         /// </summary>

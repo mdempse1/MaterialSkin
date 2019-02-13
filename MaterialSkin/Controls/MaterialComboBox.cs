@@ -65,7 +65,7 @@
         internal void ResetColors()
         {
             Brush br = new SolidBrush(SkinManager.GetControlBackgroundColor());
-            Font = SkinManager.ROBOTO_REGULAR_11;
+            Font = SkinManager.TEXT_FONT;
             BackColor = SkinManager.GetControlBackgroundColor();
             ForeColor = SkinManager.GetPrimaryTextColor();
 
@@ -201,6 +201,7 @@
 ;            
             if (AutoSize == false) { return; }
 
+            Font = SkinManager.TEXT_FONT;
            
             int width = this.DropDownWidth;
             Graphics g = this.CreateGraphics();

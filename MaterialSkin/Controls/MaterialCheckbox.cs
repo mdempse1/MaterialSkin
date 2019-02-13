@@ -145,7 +145,7 @@
         /// <returns>The <see cref="Size"/></returns>
         public override Size GetPreferredSize(Size proposedSize)
         {
-            var w = _boxOffset + CHECKBOX_SIZE + 2 + (int)CreateGraphics().MeasureString(Text, SkinManager.ROBOTO_MEDIUM_10).Width;
+            var w = _boxOffset + CHECKBOX_SIZE + 2 + (int)CreateGraphics().MeasureString(Text, SkinManager.TEXT_FONT).Width;
             return Ripple ? new Size(w, 30) : new Size(w, 20);
         }
 
@@ -234,10 +234,10 @@
             }
 
             // draw checkbox text
-            SizeF stringSize = g.MeasureString(Text, SkinManager.ROBOTO_MEDIUM_10);
+            SizeF stringSize = g.MeasureString(Text, SkinManager.TEXT_FONT);
             g.DrawString(
                 Text,
-                SkinManager.ROBOTO_MEDIUM_10,
+                SkinManager.TEXT_FONT,
                 Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(),
                 _boxOffset + TEXT_OFFSET, Height / 2 - stringSize.Height / 2);
 
@@ -298,7 +298,7 @@
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-            Font = SkinManager.ROBOTO_MEDIUM_10;
+            Font = SkinManager.TEXT_FONT;
 
             if (DesignMode)
             {

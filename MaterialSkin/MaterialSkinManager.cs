@@ -567,9 +567,35 @@
         public Font ROBOTO_MEDIUM_10;
 
         /// <summary>
+        /// Defines the ROBOTO_MEDIUM_9
+        /// </summary>
+        public Font ROBOTO_MEDIUM_9;
+
+        /// <summary>
+        /// Defines the BUTTON_FONT
+        /// </summary>
+        public Font BUTTON_FONT;
+
+        /// <summary>
+        /// Defines the TEXT_FONT
+        /// </summary>
+        public Font TEXT_FONT;
+
+        /// <summary>
+        /// Defines the TITLE_FONT
+        /// </summary>
+        public Font TITLE_FONT;
+
+        /// <summary>
+        /// Defines the TAB_SELECTOR_FONT
+        /// </summary>
+        public Font TAB_SELECTOR_FONT;
+
+        /// <summary>
         /// Defines the FORM_PADDING
         /// </summary>
         public int FORM_PADDING = 14;
+
 
         /// <summary>
         /// The AddFontMemResourceEx
@@ -589,10 +615,15 @@
         {
             ROBOTO_MEDIUM_12 = new Font(LoadFont(Resources.Roboto_Medium), 12f);
             ROBOTO_MEDIUM_10 = new Font(LoadFont(Resources.Roboto_Medium), 10f);
+            ROBOTO_MEDIUM_9 = new Font(LoadFont(Resources.Roboto_Medium), 9f);
             ROBOTO_REGULAR_11 = new Font(LoadFont(Resources.Roboto_Regular), 11f);
             ROBOTO_MEDIUM_11 = new Font(LoadFont(Resources.Roboto_Medium), 11f);
             Theme = Themes.LIGHT;
-            ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            ColorScheme = new ColorScheme(Primary.ClaytexPrimary, Primary.ClaytexDark, Primary.ClaytexLight, Accent.ClaytexLight, TextShade.WHITE);
+            BUTTON_FONT = ROBOTO_MEDIUM_10;
+            TEXT_FONT = ROBOTO_MEDIUM_9;
+            TITLE_FONT = ROBOTO_MEDIUM_12;
+            TAB_SELECTOR_FONT= ROBOTO_MEDIUM_11;
         }
 
         /// <summary>
@@ -651,7 +682,7 @@
             foreach (var materialForm in _formsToManage)
             {
                 materialForm.BackColor = newBackColor;
-                UpdateControl(materialForm, newBackColor);
+                UpdateControl(materialForm, newBackColor, ROBOTO_REGULAR_11);
             }
         }
 
@@ -686,7 +717,7 @@
         /// <param name="controlToUpdate">The controlToUpdate<see cref="Control"/></param>
         public void UpdateControl(Control controlToUpdate)
         {
-            UpdateControl(controlToUpdate, GetApplicationBackgroundColor());
+            UpdateControl(controlToUpdate, GetApplicationBackgroundColor(), controlToUpdate.Font);
         }
 
         /// <summary>
@@ -694,7 +725,7 @@
         /// </summary>
         /// <param name="controlToUpdate">The controlToUpdate<see cref="Control"/></param>
         /// <param name="newBackColor">The newBackColor<see cref="Color"/></param>
-        private void UpdateControl(Control controlToUpdate, Color newBackColor)
+        private void UpdateControl(Control controlToUpdate, Color newBackColor, Font parentFont)
         {
 
 
@@ -729,16 +760,16 @@
             }
             else if (controlToUpdate.HasProperty("BackColor") && CurrentTabPage == null && !controlToUpdate.IsMaterialControl())
             {         // if the control has a backcolor property set the colors  
-                if (controlToUpdate.BackColor != GetControlBackgroundColor())
+                if (controlToUpdate.BackColor != newBackColor)
                 {
-                    controlToUpdate.BackColor = GetControlBackgroundColor();
+                    controlToUpdate.BackColor = newBackColor;
                     if (controlToUpdate.HasProperty("ForeColor") && controlToUpdate.ForeColor != GetPrimaryTextColor())
                     {
                         controlToUpdate.ForeColor = GetPrimaryTextColor();
 
                         if (controlToUpdate.Font == SystemFonts.DefaultFont) // if the control has not had the font changed from default, set a default
                         {
-                            controlToUpdate.Font = ROBOTO_REGULAR_11;
+                            controlToUpdate.Font = parentFont;
                         }
                     }
                 }
@@ -754,7 +785,7 @@
             //recursive call
             foreach (Control control in controlToUpdate.Controls)
             {
-                UpdateControl(control, newBackColor);
+                UpdateControl(control, newBackColor, controlToUpdate.Font);
             }
 
             controlToUpdate.Invalidate();

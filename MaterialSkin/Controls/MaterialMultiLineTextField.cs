@@ -122,7 +122,7 @@
 
             ContextMenuStrip = cms;
             BorderStyle = BorderStyle.None;
-            Font = SkinManager.ROBOTO_REGULAR_11;
+            Font = SkinManager.TEXT_FONT;
             BackColor = SkinManager.GetControlBackgroundColor();
             ForeColor = SkinManager.GetPrimaryTextColor();
             BackColorChanged += (sender, args) => BackColor = SkinManager.GetControlBackgroundColor();
